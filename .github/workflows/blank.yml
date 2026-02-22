@@ -1,0 +1,33 @@
+name: EPG Auto Update
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # ყოველ 6 საათში
+  workflow_dispatch:
+
+jobs:
+  update-epg:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install axios xml2js
+
+      - name: Run EPG Scraper
+        run: node epg-scraper.js
+
+      - name: Commit Updated EPG
+        run: |
+          git config --global user.name "EPG Bot"
+          git config --global user.email "epg-bot@github.com"
+          git add epg-ge.xml
+          git commit -m "Auto EPG Update"
+          git push
