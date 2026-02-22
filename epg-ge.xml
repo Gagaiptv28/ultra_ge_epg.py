@@ -1,1 +1,15 @@
 
+<?xml version="1.0" encoding="UTF-8"?>
+<tv>
+
+  <channel id="1tv">
+    <display-name>1TV HD</display-name>
+  </channel>
+
+  <programme channel="1tv"
+    start="20260222080000 +0400"
+    stop="20260222090000 +0400">
+    <title>დილა მშვიდობისა საქართველო</title>
+  </programme>
+
+</tv>
